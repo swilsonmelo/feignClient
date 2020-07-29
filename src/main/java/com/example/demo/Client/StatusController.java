@@ -2,18 +2,21 @@ package com.example.demo.Client;
 
 
 import com.example.demo.Server.SpaceStation;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.Random;
 
 @RestController
-@RequiredArgsConstructor
 public class StatusController {
 
     private final SpaceStationClient spaceStationClient;
+
+    @Autowired
+    public StatusController(SpaceStationClient spaceStationClient) {
+        this.spaceStationClient = spaceStationClient;
+    }
 
     @GetMapping("/status")
     public SpaceStation status(){
